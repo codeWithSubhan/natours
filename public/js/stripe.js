@@ -7,9 +7,7 @@ export const bookTour = async (tourId) => {
       "pk_test_51QLMPeGLJVNVtyBYiTd4czIFOXyPPPOpS0iOjBlJzI5hFAYPPC7txjwpq5LpGnz4R2ENQceWHSV2yPpYHJrTrjBB002YogaQyl"
     );
     // 1) Get checkout session from API
-    const session = await axios(
-      `http://localhost:3000/api/v1/bookings/checkout-session/${tourId}`
-    );
+    const session = await axios(`/api/v1/bookings/checkout-session/${tourId}`);
     console.log(session, session.data.session.id);
 
     // 2) Create checkout form + chanre credit card
