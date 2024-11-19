@@ -2605,6 +2605,7 @@
       if (res.data.status == "success")
         showAlert("success", `${type.toUpperCase()} updated successfully!`);
     } catch (err) {
+      console.log("err:", err);
       showAlert("error", err.response.data.message);
     }
   };
@@ -2651,7 +2652,6 @@
       form.append("name", document.getElementById("name").value);
       form.append("email", document.getElementById("email").value);
       form.append("photo", document.getElementById("photo").files[0]);
-      console.log("form", form);
       updateSettings(form, "data");
     });
   if (userPasswordForm)
