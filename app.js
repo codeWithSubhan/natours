@@ -30,6 +30,7 @@ const scriptSrcUrls = [
   "https://unpkg.com/",
   "https://tile.openstreetmap.org",
   "https://js.stripe.com",
+  "https://vercel.live/_next-live/feedback/feedback.js",
 ];
 const styleSrcUrls = [
   "https://unpkg.com/",
@@ -37,20 +38,24 @@ const styleSrcUrls = [
   "https://fonts.googleapis.com/",
   "https://js.stripe.com/",
   "https://js.stripe.com",
+  "https://vercel.live/_next-live/feedback/feedback.js",
 ];
 const connectSrcUrls = [
   "https://unpkg.com",
   "https://tile.openstreetmap.org",
   "ws://localhost:1234",
   "https://js.stripe.com",
+  "https://vercel.live/_next-live/feedback/feedback.js",
 ];
 const fontSrcUrls = [
   "fonts.googleapis.com",
   "fonts.gstatic.com",
-  "https://js.stripe.com", // Fixed URL format
+  "https://js.stripe.com",
+  "https://vercel.live/_next-live/feedback/feedback.js",
 ];
 const frameSrcUrls = [
-  "https://js.stripe.com", // Explicitly allow framing from Stripe
+  "https://js.stripe.com",
+  "https://vercel.live/_next-live/feedback/feedback.js",
 ];
 
 app.use(
