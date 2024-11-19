@@ -26,53 +26,61 @@ app.set("views", path.join(__dirname, "views"));
 //GLOBAL  MIDDLEWARE
 app.use(helmet()); // Secure HTTP headers
 
-const scriptSrcUrls = [
-  "https://unpkg.com/",
-  "https://tile.openstreetmap.org",
-  "https://js.stripe.com",
-  "https://vercel.live/_next-live/feedback/feedback.js",
-];
-const styleSrcUrls = [
-  "https://unpkg.com/",
-  "https://tile.openstreetmap.org",
-  "https://fonts.googleapis.com/",
-  "https://js.stripe.com/",
-  "https://js.stripe.com",
-  "https://vercel.live/_next-live/feedback/feedback.js",
-];
-const connectSrcUrls = [
-  "https://unpkg.com",
-  "https://tile.openstreetmap.org",
-  "ws://localhost:1234",
-  "https://js.stripe.com",
-  "https://vercel.live/_next-live/feedback/feedback.js",
-];
-const fontSrcUrls = [
-  "fonts.googleapis.com",
-  "fonts.gstatic.com",
-  "https://js.stripe.com",
-  "https://vercel.live/_next-live/feedback/feedback.js",
-];
-const frameSrcUrls = [
-  "https://js.stripe.com",
-  "https://vercel.live/_next-live/feedback/feedback.js",
-];
+// const scriptSrcUrls = [
+//   "https://unpkg.com/",
+//   "https://tile.openstreetmap.org",
+//   "https://js.stripe.com",
+//   "https://vercel.live/_next-live/feedback/feedback.js",
+// ];
+// const styleSrcUrls = [
+//   "https://unpkg.com/",
+//   "https://tile.openstreetmap.org",
+//   "https://fonts.googleapis.com/",
+//   "https://js.stripe.com/",
+//   "https://js.stripe.com",
+//   "https://vercel.live/_next-live/feedback/feedback.js",
+// ];
+// const connectSrcUrls = [
+//   "https://unpkg.com",
+//   "https://tile.openstreetmap.org",
+//   "ws://localhost:1234",
+//   "https://js.stripe.com",
+//   "https://vercel.live/_next-live/feedback/feedback.js",
+// ];
+// const fontSrcUrls = [
+//   "fonts.googleapis.com",
+//   "fonts.gstatic.com",
+//   "https://js.stripe.com",
+//   "https://vercel.live/_next-live/feedback/feedback.js",
+// ];
+// const frameSrcUrls = [
+//   "https://js.stripe.com",
+//   "https://vercel.live/_next-live/feedback/feedback.js",
+// ];
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"], // Restrictive default source
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'self'", ...scriptSrcUrls],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-      workerSrc: ["'self'", "blob:"],
-      objectSrc: [], // Restrictive object source
-      imgSrc: ["'self'", "blob:", "data:", "https:"],
-      fontSrc: ["'self'", ...fontSrcUrls],
-      frameSrc: ["'self'", ...frameSrcUrls], // Explicitly allow Stripe's frame
-    },
-  })
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"], // Restrictive default source
+//       connectSrc: ["'self'", ...connectSrcUrls],
+//       scriptSrc: ["'self'", ...scriptSrcUrls],
+//       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+//       workerSrc: ["'self'", "blob:"],
+//       objectSrc: [], // Restrictive object source
+//       imgSrc: ["'self'", "blob:", "data:", "https:"],
+//       fontSrc: ["'self'", ...fontSrcUrls],
+//       frameSrc: ["'self'", ...frameSrcUrls], // Explicitly allow Stripe's frame
+//     },
+//   })
+// );
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
+  );
+  next();
+});
 
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
